@@ -1,5 +1,5 @@
-<%@ page import="com.buddybounce.dashboard.User" %>
-<!doctype html>
+<%@ page import="net.realizeideas.iphysics.User" %>
+<!DOCTYPE html>
 <html>
 <head>
   <meta name="layout" content="main">
@@ -7,7 +7,7 @@
   <title><g:message code="default.list.label" args="[entityName]"/></title>
 </head>
 
-<body tab="usersTab">
+<body>
 <a href="#list-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
                                                            default="Skip to content&hellip;"/></a>
 
@@ -27,11 +27,19 @@
     <thead>
     <tr>
 
+      <g:sortableColumn property="createdBy" title="${message(code: 'user.createdBy.label', default: 'Created By')}"/>
+
+      <g:sortableColumn property="dateCreated"
+                        title="${message(code: 'user.dateCreated.label', default: 'Date Created')}"/>
+
+      <g:sortableColumn property="lastUpdated"
+                        title="${message(code: 'user.lastUpdated.label', default: 'Last Updated')}"/>
+
       <g:sortableColumn property="username" title="${message(code: 'user.username.label', default: 'Username')}"/>
-      <g:sortableColumn property="firstName" title="${message(code: 'user.firstName.label', default: 'First Name')}"/>
-      <g:sortableColumn property="lastName" title="${message(code: 'user.lastName.label', default: 'Last Name')}"/>
-      <g:sortableColumn property="roles" title="${message(code: 'user.roles.label', default: 'Roles')}"/>
-      <g:sortableColumn property="enabled" title="${message(code: 'user.enabled.label', default: 'Enabled')}"/>
+
+      <g:sortableColumn property="password" title="${message(code: 'user.password.label', default: 'Password')}"/>
+
+      <g:sortableColumn property="email" title="${message(code: 'user.email.label', default: 'Email')}"/>
 
     </tr>
     </thead>
@@ -40,13 +48,17 @@
       <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
         <td><g:link action="show"
-                    id="${userInstance.id}">${fieldValue(bean: userInstance, field: "username")}</g:link></td>
+                    id="${userInstance.id}">${fieldValue(bean: userInstance, field: "createdBy")}</g:link></td>
 
-        <td>${fieldValue(bean: userInstance, field: "firstName")}</td>
-        <td>${fieldValue(bean: userInstance, field: "lastName")}</td>
-        <td>${userInstance.authorities*.authority.join(', ')}</td>
+        <td><g:formatDate date="${userInstance.dateCreated}"/></td>
 
-        <td><g:formatBoolean boolean="${userInstance.enabled}"/></td>
+        <td><g:formatDate date="${userInstance.lastUpdated}"/></td>
+
+        <td>${fieldValue(bean: userInstance, field: "username")}</td>
+
+        <td>${fieldValue(bean: userInstance, field: "password")}</td>
+
+        <td>${fieldValue(bean: userInstance, field: "email")}</td>
 
       </tr>
     </g:each>
@@ -57,7 +69,5 @@
     <g:paginate total="${userInstanceTotal}"/>
   </div>
 </div>
-
-<g:link controller="user" action="recalculateAllScores">Recalculate ALL</g:link>
 </body>
 </html>

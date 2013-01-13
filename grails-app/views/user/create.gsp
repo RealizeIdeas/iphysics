@@ -1,4 +1,4 @@
-<%@ page import="com.buddybounce.dashboard.User" %>
+<%@ page import="net.realizeideas.iphysics.User" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +7,7 @@
   <title><g:message code="default.create.label" args="[entityName]"/></title>
 </head>
 
-<body tab="usersTab">
+<body>
 <a href="#create-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
                                                              default="Skip to content&hellip;"/></a>
 
@@ -34,7 +34,7 @@
   </g:hasErrors>
   <g:form action="save">
     <fieldset class="form">
-      <g:render template="form"/>
+      <f:all bean="userInstance" except="createdBy"/>
     </fieldset>
     <fieldset class="buttons">
       <g:submitButton name="create" class="save"

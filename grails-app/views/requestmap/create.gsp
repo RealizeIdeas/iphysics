@@ -1,4 +1,4 @@
-<%@ page import="com.buddybounce.dashboard.Requestmap" %>
+<%@ page import="net.realizeideas.iphysics.Requestmap" %>
 <!doctype html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 
 <body>
 <a href="#create-requestmap" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
-                                                                   default="Skip to content&hellip;"/></a>
+                                                                                    default="Skip to content&hellip;"/></a>
 
 <div class="nav" role="navigation">
   <ul>
@@ -32,14 +32,14 @@
       </g:eachError>
     </ul>
   </g:hasErrors>
-  <g:form action="save">
-    <fieldset class="form">
-      <g:render template="form"/>
-    </fieldset>
-    <fieldset class="buttons">
-      <g:submitButton name="create" class="save"
-                      value="${message(code: 'default.button.create.label', default: 'Create')}"/>
-    </fieldset>
+  <g:form action="save" >
+  <fieldset class="form">
+    <f:all bean="requestmapInstance"/>
+  </fieldset>
+  <fieldset class="buttons">
+    <g:submitButton name="create" class="save"
+                    value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+  </fieldset>
   </g:form>
 </div>
 </body>

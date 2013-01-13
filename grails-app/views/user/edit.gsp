@@ -1,4 +1,4 @@
-<%@ page import="com.buddybounce.dashboard.User" %>
+<%@ page import="net.realizeideas.iphysics.User" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +7,7 @@
   <title><g:message code="default.edit.label" args="[entityName]"/></title>
 </head>
 
-<body tab="usersTab">
+<body>
 <a href="#edit-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
                                                            default="Skip to content&hellip;"/></a>
 
@@ -37,7 +37,7 @@
     <g:hiddenField name="id" value="${userInstance?.id}"/>
     <g:hiddenField name="version" value="${userInstance?.version}"/>
     <fieldset class="form">
-      <g:render template="form"/>
+      <f:all bean="userInstance" except="createdBy"/>
     </fieldset>
     <fieldset class="buttons">
       <g:actionSubmit class="save" action="update"

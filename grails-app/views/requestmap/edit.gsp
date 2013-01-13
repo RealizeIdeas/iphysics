@@ -1,4 +1,4 @@
-<%@ page import="com.buddybounce.dashboard.Requestmap" %>
+<%@ page import="net.realizeideas.iphysics.Requestmap" %>
 <!doctype html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 
 <body>
 <a href="#edit-requestmap" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
-                                                                 default="Skip to content&hellip;"/></a>
+                                                                                  default="Skip to content&hellip;"/></a>
 
 <div class="nav" role="navigation">
   <ul>
@@ -33,19 +33,19 @@
       </g:eachError>
     </ul>
   </g:hasErrors>
-  <g:form method="post">
-    <g:hiddenField name="id" value="${requestmapInstance?.id}"/>
-    <g:hiddenField name="version" value="${requestmapInstance?.version}"/>
-    <fieldset class="form">
-      <g:render template="form"/>
-    </fieldset>
-    <fieldset class="buttons">
-      <g:actionSubmit class="save" action="update"
-                      value="${message(code: 'default.button.update.label', default: 'Update')}"/>
-      <g:actionSubmit class="delete" action="delete"
-                      value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate=""
-                      onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
-    </fieldset>
+  <g:form method="post" >
+  <g:hiddenField name="id" value="${requestmapInstance?.id}"/>
+  <g:hiddenField name="version" value="${requestmapInstance?.version}"/>
+  <fieldset class="form">
+    <f:all bean="requestmapInstance"/>
+  </fieldset>
+  <fieldset class="buttons">
+    <g:actionSubmit class="save" action="update"
+                    value="${message(code: 'default.button.update.label', default: 'Update')}"/>
+    <g:actionSubmit class="delete" action="delete"
+                    value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate=""
+                    onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+  </fieldset>
   </g:form>
 </div>
 </body>
