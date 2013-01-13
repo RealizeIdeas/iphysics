@@ -2,6 +2,10 @@ package net.realizeideas.iphysics.question
 
 import org.springframework.dao.DataIntegrityViolationException
 
+/**
+ * CategoryController
+ * A controller class handles incoming web requests and performs actions such as redirects, rendering views and so on.
+ */
 class CategoryController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -63,8 +67,8 @@ class CategoryController {
         if (version != null) {
             if (category.version > version) {
                 category.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'category.label', default: 'Category')] as Object[],
-                          "Another user has updated this Category while you were editing")
+                        [message(code: 'category.label', default: 'Category')] as Object[],
+                        "Another user has updated this Category while you were editing")
                 render(view: "edit", model: [category: category])
                 return
             }

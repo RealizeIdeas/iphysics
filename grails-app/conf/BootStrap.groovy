@@ -2,6 +2,8 @@ import net.realizeideas.iphysics.Requestmap
 import net.realizeideas.iphysics.User
 import net.realizeideas.iphysics.Role
 import net.realizeideas.iphysics.UserRole
+import net.realizeideas.iphysics.question.Category
+import net.realizeideas.iphysics.question.Question
 
 class BootStrap {
 
@@ -39,7 +41,9 @@ class BootStrap {
             UserRole.create user, userRole
         }
 
+        def heatCategory = Category.findByTitle('Heat') ?: new Category(title: 'Heat', description:"Тепловые явления").save(failOnError: true)
 
+        Question.findByTitleAndCategory()
 
     }
     def destroy = {

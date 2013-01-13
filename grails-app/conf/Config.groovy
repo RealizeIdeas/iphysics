@@ -112,3 +112,5 @@ grails.plugins.springsecurity.rememberMe.alwaysRemember = true
 
 grails.plugin.databasemigration.updateOnStart = true
 grails.plugin.databasemigration.updateOnStartFileNames = ['changelog.groovy']
+
+grails.config.defaults.locations = [KickstartResources]
