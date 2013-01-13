@@ -34,16 +34,19 @@ class BootStrap {
                 lastName: 'Pupkin'
         ).save(failOnError: true)
 
-        if (!adminUser.authorities.contains(adminRole)) {
+        if (!UserRole.countByUserAndRole(adminUser, adminRole)) {
             UserRole.create adminUser, adminRole
         }
-        if (!user.authorities.contains(userRole)) {
+        if (!UserRole.countByUserAndRole(user, userRole)) {
             UserRole.create user, userRole
         }
 
-        def heatCategory = Category.findByTitle('Heat') ?: new Category(title: 'Heat', description:"Тепловые явления").save(failOnError: true)
+        def heatCategory = Category.findByTitle('Heat') ?: new Category(
+                title: 'Heat',
+                description:"Тепловые явления"
+        ).save(failOnError: true)
 
-        Question.findByTitleAndCategory()
+//        Question.findByTitleAndCategory()
 
     }
     def destroy = {

@@ -23,7 +23,12 @@
     <g:hiddenField name="id" value="${category?.id}"/>
     <g:hiddenField name="version" value="${category?.version}"/>
     <fieldset class="form">
-      <g:render template="form"/>
+     <f:with bean="category">
+
+        <f:field property="title"/>
+        <f:field property="description"/>
+
+      </f:with>
     </fieldset>
 
     <div class="form-actions">

@@ -63,7 +63,6 @@ class ${className}Controller {
         }
 
         if (version) {
-            def version = params.version.toLong()
             if (${propertyName}.version > version) {<% def lowerCaseName = grails.util.GrailsNameUtils.getPropertyName(className) %>
                 ${propertyName}.errors.rejectValue("version", "default.optimistic.locking.failure",
                           [message(code: '${domainClass.propertyName}.label', default: '${className}')] as Object[],

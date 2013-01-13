@@ -12,4 +12,8 @@ class Category extends BasePersistentObject{
     String description
 
     static hasMany = [tasks:Question]
+
+    String toString(){
+        "${title} (${description})"
+    }
 }

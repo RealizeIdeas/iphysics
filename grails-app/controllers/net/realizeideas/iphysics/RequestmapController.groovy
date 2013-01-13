@@ -3,7 +3,8 @@ package net.realizeideas.iphysics
 import org.springframework.dao.DataIntegrityViolationException
 
 /**
- * @author Michael Astreiko
+ * RequestmapController
+ * A controller class handles incoming web requests and performs actions such as redirects, rendering views and so on.
  */
 class RequestmapController {
 
@@ -15,91 +16,91 @@ class RequestmapController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [requestmapInstanceList: Requestmap.list(params), requestmapInstanceTotal: Requestmap.count()]
+        [requestmapList: Requestmap.list(params), requestmapTotal: Requestmap.count()]
     }
 
     def create() {
-        [requestmapInstance: new Requestmap(params)]
+        [requestmap: new Requestmap(params)]
     }
 
     def save() {
-        def requestmapInstance = new Requestmap(params)
-        if (!requestmapInstance.save(flush: true)) {
-            render(view: "create", model: [requestmapInstance: requestmapInstance])
+        def requestmap = new Requestmap(params)
+        if (!requestmap.save(flush: true)) {
+            render(view: "create", model: [requestmap: requestmap])
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), requestmapInstance.id])
-        redirect(action: "show", id: requestmapInstance.id)
+        flash.message = message(code: 'default.created.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), requestmap.id])
+        redirect(action: "show", id: requestmap.id)
     }
 
     def show(Long id) {
-        def requestmapInstance = Requestmap.get(id)
-        if (!requestmapInstance) {
+        def requestmap = Requestmap.get(id)
+        if (!requestmap) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), id])
             redirect(action: "list")
             return
         }
 
-        [requestmapInstance: requestmapInstance]
+        [requestmap: requestmap]
     }
 
     def edit(Long id) {
-        def requestmapInstance = Requestmap.get(id)
-        if (!requestmapInstance) {
+        def requestmap = Requestmap.get(id)
+        if (!requestmap) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), id])
             redirect(action: "list")
             return
         }
 
-        [requestmapInstance: requestmapInstance]
+        [requestmap: requestmap]
     }
 
     def update(Long id, Long version) {
-        def requestmapInstance = Requestmap.get(id)
-        if (!requestmapInstance) {
+        def requestmap = Requestmap.get(id)
+        if (!requestmap) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), id])
             redirect(action: "list")
             return
         }
 
-        if (version != null) {
-            if (requestmapInstance.version > version) {
-                requestmapInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                        [message(code: 'requestmap.label', default: 'Requestmap')] as Object[],
-                        "Another user has updated this Requestmap while you were editing")
-                render(view: "edit", model: [requestmapInstance: requestmapInstance])
+        if (version) {
+            if (requestmap.version > version) {
+                requestmap.errors.rejectValue("version", "default.optimistic.locking.failure",
+                          [message(code: 'requestmap.label', default: 'Requestmap')] as Object[],
+                          "Another user has updated this Requestmap while you were editing")
+                render(view: "edit", model: [requestmap: requestmap])
                 return
             }
         }
 
-        requestmapInstance.properties = params
+        requestmap.properties = params
 
-        if (!requestmapInstance.save(flush: true)) {
-            render(view: "edit", model: [requestmapInstance: requestmapInstance])
+        if (!requestmap.save(flush: true)) {
+            render(view: "edit", model: [requestmap: requestmap])
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), requestmapInstance.id])
-        redirect(action: "show", id: requestmapInstance.id)
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), requestmap.id])
+        redirect(action: "show", id: requestmap.id)
     }
 
     def delete(Long id) {
-        def requestmapInstance = Requestmap.get(id)
-        if (!requestmapInstance) {
+        def requestmap = Requestmap.get(id)
+        if (!requestmap) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), id])
             redirect(action: "list")
             return
         }
 
         try {
-            requestmapInstance.delete(flush: true)
+            requestmap.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), id])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'requestmap.label', default: 'Requestmap'), id])
-            redirect(action: "show", id: id)
+            redirect(action: "show", id: params.id)
         }
     }
 }

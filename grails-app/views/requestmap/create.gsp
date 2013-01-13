@@ -1,46 +1,41 @@
 <%@ page import="net.realizeideas.iphysics.Requestmap" %>
 <!doctype html>
 <html>
+
 <head>
-  <meta name="layout" content="main">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="layout" content="kickstart"/>
   <g:set var="entityName" value="${message(code: 'requestmap.label', default: 'Requestmap')}"/>
   <title><g:message code="default.create.label" args="[entityName]"/></title>
 </head>
 
 <body>
-<a href="#create-requestmap" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
-                                                                   default="Skip to content&hellip;"/></a>
 
-<div class="nav" role="navigation">
-  <ul>
-    <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-    <li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link></li>
-  </ul>
-</div>
+<section id="create-requestmap" class="first">
 
-<div id="create-requestmap" class="content scaffold-create" role="main">
-  <h1><g:message code="default.create.label" args="[entityName]"/></h1>
-  <g:if test="${flash.message}">
-    <div class="message" role="status">${flash.message}</div>
-  </g:if>
-  <g:hasErrors bean="${requestmapInstance}">
-    <ul class="errors" role="alert">
-    <g:eachError bean="${requestmapInstance}" var="error">
-      <li<g:if
-        test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
-        error="${error}"/></li>
-    </g:eachError>
-    </ul>
+  <g:hasErrors bean="${requestmap}">
+    <div class="alert alert-error">
+      <g:renderErrors bean="${requestmap}" as="list"/>
+    </div>
   </g:hasErrors>
-  <g:form action="save">
-    <fieldset class="form">
-      <f:all bean="requestmapInstance"/>
-    </fieldset>
-    <fieldset class="buttons">
-      <g:submitButton name="create" class="save"
-                      value="${message(code: 'default.button.create.label', default: 'Create')}"/>
-    </fieldset>
+
+  <g:form action="save" class="form-horizontal" >
+  <fieldset class="form">
+    <f:with bean="requestmap">
+      <f:field property="url"/>
+      <f:field property="configAttribute"/>
+    </f:with>
+  </fieldset>
+
+  <div class="form-actions">
+    <g:submitButton name="create" class="btn btn-primary"
+                    value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+    <button class="btn" type="reset">Cancel</button>
+  </div>
   </g:form>
-</div>
+
+</section>
+
 </body>
+
 </html>

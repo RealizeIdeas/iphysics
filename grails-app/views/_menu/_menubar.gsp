@@ -23,13 +23,39 @@
 <div class="${menuposition}">
   <ul class="${menutype}" data-role="listview" data-split-icon="gear" data-filter="true">
 
-    <g:each status="i" var="c" in="${grailsApplication.controllerClasses.sort { it.logicalPropertyName }}">
-      <li class="controller${params.controller == c.logicalPropertyName ? " active" : ""}">
-        <g:link controller="${c.logicalPropertyName}" action="index">
-          <g:message code="${c.logicalPropertyName}.label" default="${c.logicalPropertyName.capitalize()}"/>
+    <li class="controller${params.controller == 'home' ? " active" : ""}">
+      <g:link controller="home" action="index">
+        <g:message code="home.label" default="Home"/>
+      </g:link>
+    </li>
+    <sec:ifAllGranted roles="ROLE_ADMIN">
+      <li class="controller${params.controller == 'category' ? " active" : ""}">
+        <g:link controller="category" action="index">
+          <g:message code="category.label" default="Category"/>
         </g:link>
       </li>
-    </g:each>
+    </sec:ifAllGranted>
+    <sec:ifAllGranted roles="ROLE_ADMIN">
+      <li class="controller${params.controller == 'question' ? " active" : ""}">
+        <g:link controller="question" action="index">
+          <g:message code="question.label" default="Question"/>
+        </g:link>
+      </li>
+    </sec:ifAllGranted>
+    <sec:ifAllGranted roles="ROLE_ADMIN">
+      <li class="controller${params.controller == 'user' ? " active" : ""}">
+        <g:link controller="user" action="index">
+          <g:message code="user.label" default="User"/>
+        </g:link>
+      </li>
+    </sec:ifAllGranted>
+    <sec:ifAllGranted roles="ROLE_ADMIN">
+      <li class="controller${params.controller == 'requestmap' ? " active" : ""}">
+        <g:link controller="requestmap" action="index">
+          <g:message code="requestmap.label" default="Requestmap"/>
+        </g:link>
+      </li>
+    </sec:ifAllGranted>
 
   </ul>
 </div>

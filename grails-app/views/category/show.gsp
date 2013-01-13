@@ -15,25 +15,10 @@
 
   <table class="table">
     <tbody>
-
     <tr class="prop">
-      <td valign="top" class="name"><g:message code="category.createdBy.label" default="Created By"/></td>
+      <td valign="top" class="name"><g:message code="category.title.label" default="Title"/></td>
 
-      <td valign="top" class="value">${fieldValue(bean: category, field: "createdBy")}</td>
-
-    </tr>
-
-    <tr class="prop">
-      <td valign="top" class="name"><g:message code="category.dateCreated.label" default="Date Created"/></td>
-
-      <td valign="top" class="value"><g:formatDate date="${category?.dateCreated}"/></td>
-
-    </tr>
-
-    <tr class="prop">
-      <td valign="top" class="name"><g:message code="category.lastUpdated.label" default="Last Updated"/></td>
-
-      <td valign="top" class="value"><g:formatDate date="${category?.lastUpdated}"/></td>
+      <td valign="top" class="value">${fieldValue(bean: category, field: "title")}</td>
 
     </tr>
 
@@ -54,13 +39,6 @@
           </g:each>
         </ul>
       </td>
-
-    </tr>
-
-    <tr class="prop">
-      <td valign="top" class="name"><g:message code="category.title.label" default="Title"/></td>
-
-      <td valign="top" class="value">${fieldValue(bean: category, field: "title")}</td>
 
     </tr>
 

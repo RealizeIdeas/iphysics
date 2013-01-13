@@ -1,31 +1,36 @@
-<%@ page import="net.realizeideas.iphysics.Requestmap" %>
+<%@ page import="net.realizeideas.iphysics.question.Question" %>
+
 <!doctype html>
 <html>
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="kickstart"/>
-  <g:set var="entityName" value="${message(code: 'requestmap.label', default: 'Requestmap')}"/>
+  <g:set var="entityName" value="${message(code: 'question.label', default: 'Question')}"/>
   <title><g:message code="default.edit.label" args="[entityName]"/></title>
 </head>
 
 <body>
 
-<section id="edit-requestmap" class="first">
+<section id="edit-question" class="first">
 
-  <g:hasErrors bean="${requestmap}">
+  <g:hasErrors bean="${question}">
     <div class="alert alert-error">
-      <g:renderErrors bean="${requestmap}" as="list"/>
+      <g:renderErrors bean="${question}" as="list"/>
     </div>
   </g:hasErrors>
 
   <g:form method="post" class="form-horizontal">
-    <g:hiddenField name="id" value="${requestmap?.id}"/>
-    <g:hiddenField name="version" value="${requestmap?.version}"/>
+    <g:hiddenField name="id" value="${question?.id}"/>
+    <g:hiddenField name="version" value="${question?.version}"/>
     <fieldset class="form">
-      <f:with bean="requestmap">
-        <f:field property="url"/>
-        <f:field property="configAttribute"/>
+      <f:with bean="question">
+        <f:field property="title"/>
+        <f:field property="description"/>
+        <f:field property="category"/>
+        <f:field property="type"/>
+        <f:field property="maxPointsToEarn"/>
+        <f:field property="asnwers"/>
       </f:with>
     </fieldset>
 
