@@ -263,4 +263,152 @@ databaseChangeLog = {
             column(name: "username")
         }
     }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-1") {
+        createTable(tableName: "exam_question") {
+            column(name: "exam_questions_id", type: "bigint")
+
+            column(name: "question_id", type: "bigint")
+        }
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-2") {
+        createTable(tableName: "student_answer") {
+            column(autoIncrement: "true", name: "id", type: "bigint") {
+                constraints(nullable: "false", primaryKey: "true", primaryKeyName: "student_answePK")
+            }
+
+            column(name: "version", type: "bigint") {
+                constraints(nullable: "false")
+            }
+
+            column(name: "answer_id", type: "bigint") {
+                constraints(nullable: "false")
+            }
+
+            column(name: "created_by", type: "varchar(255)")
+
+            column(name: "date_created", type: "datetime")
+
+            column(name: "exam_id", type: "bigint") {
+                constraints(nullable: "false")
+            }
+
+            column(name: "last_updated", type: "datetime")
+
+            column(name: "question_id", type: "bigint") {
+                constraints(nullable: "false")
+            }
+
+            column(name: "student_id", type: "bigint") {
+                constraints(nullable: "false")
+            }
+        }
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-3") {
+        dropNotNullConstraint(columnDataType: "datetime", columnName: "date_created", tableName: "answer")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-4") {
+        dropNotNullConstraint(columnDataType: "datetime", columnName: "last_updated", tableName: "answer")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-5") {
+        dropNotNullConstraint(columnDataType: "datetime", columnName: "date_created", tableName: "category")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-6") {
+        dropNotNullConstraint(columnDataType: "datetime", columnName: "last_updated", tableName: "category")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-7") {
+        dropNotNullConstraint(columnDataType: "datetime", columnName: "date_created", tableName: "exam")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-8") {
+        dropNotNullConstraint(columnDataType: "datetime", columnName: "last_updated", tableName: "exam")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-9") {
+        dropNotNullConstraint(columnDataType: "datetime", columnName: "date_created", tableName: "question")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-10") {
+        dropNotNullConstraint(columnDataType: "datetime", columnName: "last_updated", tableName: "question")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-11") {
+        dropNotNullConstraint(columnDataType: "datetime", columnName: "date_created", tableName: "user")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-12") {
+        dropNotNullConstraint(columnDataType: "datetime", columnName: "last_updated", tableName: "user")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-13") {
+        addForeignKeyConstraint(baseColumnNames: "exam_questions_id", baseTableName: "exam_question", constraintName: "FKE2CB6806A8347D62", deferrable: "false", initiallyDeferred: "false", referencedColumnNames: "id", referencedTableName: "exam", referencesUniqueColumn: "false")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-14") {
+        addForeignKeyConstraint(baseColumnNames: "question_id", baseTableName: "exam_question", constraintName: "FKE2CB68067B71ED69", deferrable: "false", initiallyDeferred: "false", referencedColumnNames: "id", referencedTableName: "question", referencesUniqueColumn: "false")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-15") {
+        addForeignKeyConstraint(baseColumnNames: "answer_id", baseTableName: "student_answer", constraintName: "FKAD2AD2423CD3CE29", deferrable: "false", initiallyDeferred: "false", referencedColumnNames: "id", referencedTableName: "answer", referencesUniqueColumn: "false")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-16") {
+        addForeignKeyConstraint(baseColumnNames: "exam_id", baseTableName: "student_answer", constraintName: "FKAD2AD24219F7A130", deferrable: "false", initiallyDeferred: "false", referencedColumnNames: "id", referencedTableName: "exam", referencesUniqueColumn: "false")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-17") {
+        addForeignKeyConstraint(baseColumnNames: "question_id", baseTableName: "student_answer", constraintName: "FKAD2AD2427B71ED69", deferrable: "false", initiallyDeferred: "false", referencedColumnNames: "id", referencedTableName: "question", referencesUniqueColumn: "false")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-18") {
+        addForeignKeyConstraint(baseColumnNames: "student_id", baseTableName: "student_answer", constraintName: "FKAD2AD242121F49E3", deferrable: "false", initiallyDeferred: "false", referencedColumnNames: "id", referencedTableName: "user", referencesUniqueColumn: "false")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-19") {
+        createIndex(indexName: "FKE2CB68067B71ED69", tableName: "exam_question") {
+            column(name: "question_id")
+        }
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-20") {
+        createIndex(indexName: "FKE2CB6806A8347D62", tableName: "exam_question") {
+            column(name: "exam_questions_id")
+        }
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-21") {
+        createIndex(indexName: "FKAD2AD242121F49E3", tableName: "student_answer") {
+            column(name: "student_id")
+        }
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-22") {
+        createIndex(indexName: "FKAD2AD24219F7A130", tableName: "student_answer") {
+            column(name: "exam_id")
+        }
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-23") {
+        createIndex(indexName: "FKAD2AD2423CD3CE29", tableName: "student_answer") {
+            column(name: "answer_id")
+        }
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-24") {
+        createIndex(indexName: "FKAD2AD2427B71ED69", tableName: "student_answer") {
+            column(name: "question_id")
+        }
+    }
+
+    changeSet(author: "ami (generated)", id: "1358193606911-25") {
+        createIndex(indexName: "FK143BF46AA1B8F273", tableName: "user_role") {
+            column(name: "role_id")
+        }
+    }
 }
