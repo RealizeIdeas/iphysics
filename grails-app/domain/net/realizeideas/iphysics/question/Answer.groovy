@@ -9,4 +9,11 @@ class Answer extends BasePersistentObject {
     Boolean isCorrect = false
 
     String value
+
+    static belongsTo = [StudentAnswer, Question]
+
+    @Override
+    public String toString() {
+        return value + (isCorrect ? " (correct)" : "");
+    }
 }

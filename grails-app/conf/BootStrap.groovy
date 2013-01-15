@@ -4,6 +4,7 @@ import net.realizeideas.iphysics.Role
 import net.realizeideas.iphysics.UserRole
 import net.realizeideas.iphysics.question.Category
 import net.realizeideas.iphysics.question.Question
+import net.realizeideas.iphysics.question.Answer
 
 class BootStrap {
 
@@ -46,7 +47,71 @@ class BootStrap {
                 description:"Тепловые явления"
         ).save(failOnError: true)
 
-//        Question.findByTitleAndCategory()
+        Question.findByTitleAndCategory("Heat1", heatCategory)?: new Question(
+                title: "Heat1",
+                category: heatCategory,
+                description: "Нагрев чашки, стоящей на столе рядом с горячим чайником, в основном, осуществляется",
+                answers: [
+                        new Answer(value: "теплопроводностью"),
+                        new Answer(value: "конвекцией"),
+                        new Answer(value: "излучением", isCorrect: true)
+                ],
+                type: "selectOne",
+                maxPointsToEarn: 1
+        ).save(failOnError: true)
+
+        Question.findByTitleAndCategory("Heat2", heatCategory)?: new Question(
+                title: "Heat2",
+                category: heatCategory,
+                description: "Нагрев жидкости внутри термометра, опущенного в калориметр с горячей водой, осуществляется",
+                answers: [
+                        new Answer(value: "теплопроводностью", isCorrect: true),
+                        new Answer(value: "конвекцией"),
+                        new Answer(value: "излучением")
+                ],
+                type: "selectOne",
+                maxPointsToEarn: 1
+        ).save(failOnError: true)
+
+        Question.findByTitleAndCategory("Heat3", heatCategory)?: new Question(
+                title: "Heat3",
+                category: heatCategory,
+                description: "Расположение вентиляционных отверстий на кухне в верхней части стены связано с",
+                answers: [
+                        new Answer(value: "теплопроводностью"),
+                        new Answer(value: "конвекцией", isCorrect: true),
+                        new Answer(value: "излучением")
+                ],
+                type: "selectOne",
+                maxPointsToEarn: 1
+        ).save(failOnError: true)
+
+
+        Question.findByTitleAndCategory("Heat4", heatCategory)?: new Question(
+                title: "Heat4",
+                category: heatCategory,
+                description: "В летний день нагрев нижних слоев воды в пруду осуществляется",
+                answers: [
+                        new Answer(value: "теплопроводностью", isCorrect: true),
+                        new Answer(value: "конвекцией"),
+                        new Answer(value: "излучением")
+                ],
+                type: "selectOne",
+                maxPointsToEarn: 1
+        ).save(failOnError: true)
+
+        Question.findByTitleAndCategory("Heat5", heatCategory)?: new Question(
+                title: "Heat5",
+                category: heatCategory,
+                description: "В летнюю ночь остывание нижних слоев воды в пруду, в основном, осуществляется",
+                answers: [
+                        new Answer(value: "теплопроводностью"),
+                        new Answer(value: "конвекцией", isCorrect: true),
+                        new Answer(value: "излучением")
+                ],
+                type: "selectOne",
+                maxPointsToEarn: 1
+        ).save(failOnError: true)
 
     }
     def destroy = {

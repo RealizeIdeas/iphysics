@@ -411,4 +411,34 @@ databaseChangeLog = {
             column(name: "role_id")
         }
     }
+
+    changeSet(author: "ami (generated)", id: "1358287544539-1") {
+        addColumn(tableName: "question_answer") {
+            column(name: "question_answers_id", type: "bigint")
+        }
+    }
+
+    changeSet(author: "ami (generated)", id: "1358287544539-2") {
+        addColumn(tableName: "user") {
+            column(name: "total_points", type: "decimal(19,2)")
+        }
+    }
+
+    changeSet(author: "ami (generated)", id: "1358287544539-3") {
+        dropForeignKeyConstraint(baseTableName: "question_answer", baseTableSchemaName: "iphysics", constraintName: "FK561DF23774FA0B1D")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358287544539-4") {
+        addForeignKeyConstraint(baseColumnNames: "question_answers_id", baseTableName: "question_answer", constraintName: "FK561DF2379709C073", deferrable: "false", initiallyDeferred: "false", referencedColumnNames: "id", referencedTableName: "question", referencesUniqueColumn: "false")
+    }
+
+    changeSet(author: "ami (generated)", id: "1358287544539-5") {
+        createIndex(indexName: "FK561DF2379709C073", tableName: "question_answer") {
+            column(name: "question_answers_id")
+        }
+    }
+
+    changeSet(author: "ami (generated)", id: "1358287544539-6") {
+        dropColumn(columnName: "question_asnwers_id", tableName: "question_answer")
+    }
 }

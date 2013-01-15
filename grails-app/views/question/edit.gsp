@@ -30,7 +30,7 @@
         <f:field property="category"/>
         <f:field property="type"/>
         <f:field property="maxPointsToEarn"/>
-        <f:field property="asnwers"/>
+        <f:field property="answers"/>
       </f:with>
     </fieldset>
 

@@ -34,12 +34,12 @@
     </tr>
     
     <tr class="prop">
-      <td valign="top" class="name"><g:message code="question.asnwers.label"
-                                               default="Asnwers"/></td>
+      <td valign="top" class="name"><g:message code="question.answers.label"
+                                               default="Answers"/></td>
       
       <td valign="top" style="text-align: left;" class="value">
         <ul>
-          <g:each in="${question.asnwers}" var="a">
+          <g:each in="${question.answers}" var="a">
             <li><g:link controller="answer" action="show"
                         id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
           </g:each>

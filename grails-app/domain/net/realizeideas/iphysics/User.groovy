@@ -17,10 +17,13 @@ class User extends BasePersistentObject {
     boolean accountLocked
     boolean passwordExpired
 
+    BigDecimal totalPoints = 0
+
     static constraints = {
         username blank: false, unique: true
         password blank: false
         email nullable: true, email: true
+        totalPoints nullable: true
     }
 
 

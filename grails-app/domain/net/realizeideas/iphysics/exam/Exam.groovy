@@ -11,7 +11,17 @@ import net.realizeideas.iphysics.question.StudentAnswer
 class Exam extends BasePersistentObject {
     User student
 
-    static hasMany = [questions:Question, sstudentAnswers:StudentAnswer]
+    static hasMany = [questions:Question, studentAnswers:StudentAnswer]
+
+    BigDecimal getTotalPointsEarned() {
+        BigDecimal result = 0
+        studentAnswers?.each {StudentAnswer studentAnswer ->
+            if (questions.find {it == studentAnswer.question}.answers.find {it.isCorrect}.value == studentAnswer.answer.value) {
+                result++
+            }
+        }
+        result
+    }
 
 
 }
