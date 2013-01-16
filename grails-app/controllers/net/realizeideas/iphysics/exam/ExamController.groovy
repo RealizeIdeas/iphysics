@@ -19,8 +19,10 @@ class ExamController {
 
         def questions = Question.findAllByCategory(category, [max: 5])
 
-        session["exam"] = new Exam(questions:questions, student:user).save()
+        session["exam"] = new Exam(questions: questions, student: user).save()
         session["currentQuestionInd"] = 0
+        println "questions: ${questions}"
+        println "questions[0]: ${questions[0]}"
         render(view: "question", model: [question: questions[0]])
     }
 
@@ -30,19 +32,22 @@ class ExamController {
 
         def user = User.read(springSecurityService.currentUser.id)
 
-        StudentAnswer studentAnswer = new StudentAnswer(student:user, exam: exam,
-                question:exam?.questions[currentInd - 1])
-        studentAnswer.answer = new Answer(value: answerValue)
-        exam.addToStudentAnswers(studentAnswer)
-        studentAnswer.save(failOnError: true)
+        def questions = exam?.questions as List
+        if (questions[currentInd - 1]) {
+            StudentAnswer studentAnswer = new StudentAnswer(student: user, exam: exam,
+                    question: questions[currentInd - 1])
+            studentAnswer.answer = new Answer(value: answerValue).save()
+            exam.addToStudentAnswers(studentAnswer)
+            studentAnswer.save(failOnError: true)
+        }
 
 
-        if (exam?.questions?.size() <= currentInd) {
+        if (questions?.size() <= currentInd) {
             flash.message = "Exam finished"
 
             render(view: "examReport", model: [exam: exam])
         } else {
-            render(view: "question", model: [question: exam?.questions[currentInd]])
+            render(view: "question", model: [question: Question.read(questions[currentInd]?.id)])
         }
 
     }

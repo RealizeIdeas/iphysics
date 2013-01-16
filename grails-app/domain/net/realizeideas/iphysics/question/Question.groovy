@@ -17,6 +17,9 @@ class Question extends BasePersistentObject {
 
     static belongsTo = [category:Category]
 
+    static mapping = {
+        answers lazy: false
+    }
     static constraints = {
         type(inList: ["selectOne", "selectMany"])
         description(nullable: true)

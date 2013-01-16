@@ -14,6 +14,6 @@ class Answer extends BasePersistentObject {
 
     @Override
     public String toString() {
-        return value + (isCorrect ? " (correct)" : "");
+        return value
     }
 }

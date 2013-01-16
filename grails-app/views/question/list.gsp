@@ -16,21 +16,14 @@
   <table class="table table-bordered">
     <thead>
     <tr>
-      
-      <g:sortableColumn property="type"
-                        title="${message(code: 'question.type.label', default: 'Type')}"/>
-      
-      <g:sortableColumn property="description"
-                        title="${message(code: 'question.description.label', default: 'Description')}"/>
-      
-      <th><g:message code="question.category.label" default="Category"/></th>
-      
-      <g:sortableColumn property="maxPointsToEarn"
-                        title="${message(code: 'question.maxPointsToEarn.label', default: 'Max Points To Earn')}"/>
-      
       <g:sortableColumn property="title"
                         title="${message(code: 'question.title.label', default: 'Title')}"/>
+      <g:sortableColumn property="description"
+                        title="${message(code: 'question.description.label', default: 'Description')}"/>
+
+      <th><g:message code="question.category.label" default="Category"/></th>
       
+
     </tr>
     </thead>
     <tbody>
@@ -38,16 +31,11 @@
       <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
         
         <td><g:link action="show"
-                    id="${question.id}">${fieldValue(bean: question, field: "type")}</g:link></td>
+                    id="${question.id}">${fieldValue(bean: question, field: "title")}</g:link></td>
         
         <td>${fieldValue(bean: question, field: "description")}</td>
-        
+
         <td>${fieldValue(bean: question, field: "category")}</td>
-        
-        <td>${fieldValue(bean: question, field: "maxPointsToEarn")}</td>
-        
-        <td>${fieldValue(bean: question, field: "title")}</td>
-        
       </tr>
     </g:each>
     </tbody>

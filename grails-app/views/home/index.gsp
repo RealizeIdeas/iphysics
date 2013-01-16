@@ -8,6 +8,9 @@
 <body>
 
 <section id="intro" class="first">
+  <sec:ifLoggedIn>
+    <g:link controller="exam" action="startExam" class="btn btn-primary" params="[categoryId:1]">Start Exam</g:link>
+  </sec:ifLoggedIn>
   <h1>Welcome to Grails using Kickstart with Bootstrap</h1>
 
   <p>Congratulations, you have successfully started your first
