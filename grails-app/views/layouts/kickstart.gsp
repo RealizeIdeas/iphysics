@@ -46,11 +46,11 @@
 </g:else>
 
 <!-- use different templates for HTML structure based on layout (e.g., grid or fluid; Default is grid) -->
-<g:if test="${session.layout == 'fluid'}">
+<g:if test="${session.layout == 'grid'}">
   <g:render template="/layouts/content_${session.layout}"/>
 </g:if>
 <g:else>
-  <g:render template="/layouts/content_grid"/>
+  <g:render template="/layouts/content_fluid"/>
 </g:else>
 
 <!-- Enable to overwrite Footer by individual page -->
