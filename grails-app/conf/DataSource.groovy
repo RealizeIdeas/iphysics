@@ -28,8 +28,8 @@ environments {
     production {
           dataSource {
             url = "jdbc:mysql://127.0.0.1:3306/iphysics?useUnicode=yes&characterEncoding=UTF-8"
-            username = "buddybounce"
-            password = "buddybounce123"
+            username = "iphysics"
+            password = "iphysics987"
             pooled = true
             properties {
                 maxActive = -1
