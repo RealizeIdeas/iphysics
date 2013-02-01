@@ -18,7 +18,7 @@ grails.project.dependency.resolution = {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
         // excludes 'ehcache'
     }
-    log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    log "debug" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
     legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
@@ -57,7 +57,7 @@ grails.project.dependency.resolution = {
 
         build ":tomcat:$grailsVersion"
 
-        runtime ":database-migration:1.2.1"
+        runtime ":database-migration:1.3.2"
         runtime ":spring-security-core:1.2.7.3"
         compile ':cache:1.0.1'
         compile ":fields:1.3"
