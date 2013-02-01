@@ -6,6 +6,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="kickstart"/>
+  <link rel="stylesheet" href="${resource(dir: 'css', file: 'question.css')}" type="text/css">
   <g:set var="entityName" value="${message(code: 'question.label', default: 'Question')}"/>
   <title><g:message code="default.edit.label" args="[entityName]"/></title>
 </head>
@@ -30,7 +31,7 @@
         <f:field property="category"/>
         <f:field property="type"/>
         <f:field property="maxPointsToEarn"/>
-        <f:field property="answers"/>
+        <g:render template="answers" model="[question:question]"/>
       </f:with>
     </fieldset>
 

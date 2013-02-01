@@ -1,6 +1,7 @@
 package net.realizeideas.iphysics.question
 
 import org.springframework.dao.DataIntegrityViolationException
+import org.apache.commons.lang3.BooleanUtils
 
 /**
  * QuestionController
@@ -24,7 +25,9 @@ class QuestionController {
     }
 
     def save() {
-        def question = new Question(params)
+        Question question = new Question()
+        bindDataFromForm(question)
+
         if (!question.save(flush: true)) {
             render(view: "create", model: [question: question])
             return
@@ -32,6 +35,23 @@ class QuestionController {
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'question.label', default: 'Question'), question.id])
         redirect(action: "show", id: question.id)
+    }
+
+    private void bindDataFromForm(Question question) {
+        bindData(question, params, ["answers"])
+        if (params.'answers') {
+            question.answers?.clear()
+            if (params.'answers' instanceof String[]) {
+                for (int i = 0; i < params.'answers'?.size(); i++) {
+                    def value = params.'answers'[i]
+                    //@todo: not working!!!!
+                    def isCorrect = BooleanUtils.toBoolean(params.'isCorrect'[i])
+                    question.addToAnswers(isCorrect: isCorrect, value: value)
+                }
+            } else {
+                question.addToAnswers(isCorrect: BooleanUtils.toBoolean(params.'isCorrect'), value: params.'answers')
+            }
+        }
     }
 
     def show(Long id) {
@@ -67,14 +87,14 @@ class QuestionController {
         if (version) {
             if (question.version > version) {
                 question.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'question.label', default: 'Question')] as Object[],
-                          "Another user has updated this Question while you were editing")
+                        [message(code: 'question.label', default: 'Question')] as Object[],
+                        "Another user has updated this Question while you were editing")
                 render(view: "edit", model: [question: question])
                 return
             }
         }
 
-        question.properties = params
+        bindDataFromForm(question)
 
         if (!question.save(flush: true)) {
             render(view: "edit", model: [question: question])

@@ -17,12 +17,10 @@ class ExamController {
         def user = User.read(springSecurityService.currentUser.id)
         Category category = Category.read(categoryId)
 
-        def questions = Question.findAllByCategory(category, [max: 5])
+        def questions = Question.findAllByCategory(category, [max: 10])
 
         session["exam"] = new Exam(questions: questions, student: user).save()
         session["currentQuestionInd"] = 0
-        println "questions: ${questions}"
-        println "questions[0]: ${questions[0]}"
         render(view: "question", model: [question: questions[0]])
     }
 

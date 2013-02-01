@@ -1,0 +1,18 @@
+.minus_btn, .plus_btn {
+    border-radius: 15px;
+    float: right;
+}
+
+.plus_btn {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.additionalInfoActions {
+    float: left;
+    margin-bottom: 15px;
+}
+.answersHolder {
+    width: 400px;
+    float: left;
+}
